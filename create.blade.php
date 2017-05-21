@@ -108,8 +108,14 @@
 			document.getElementById("formData").reset();
 			getAll();
 		})
-		.fail(function() {
-			$('alert').show();
+		.fail(function(data) {
+			$('.alert').show();
+
+			$.each(data.responseJSON, function(index, val) {
+				 console.log(index+","+val);
+
+				 $('input[name='+index+']').after('<span>'+val+'</span>');
+			});
 		})
 		
 	}
